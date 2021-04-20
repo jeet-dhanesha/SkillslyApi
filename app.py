@@ -39,10 +39,10 @@ def practiceQuestion(subjectName):
                                 data = db.collection(subjectName + "_practiceQuestions").get()
                                 for elem in data:
                                                 tempQuestionList.append(elem.to_dict())
-                                # questionList = random.sample(tempQuestionList,10)
+                                questionList = random.sample(tempQuestionList,10)
                                 tempResponse = {
                                                 "responseCode":200,
-                                                "questionsDb": tempQuestionList.copy()
+                                                "questionsDb": questionList.copy()
                                 }
                 except:
                                 tempResponse = {
@@ -58,10 +58,10 @@ def interviewQuestions(subjectName):
                                 data = db.collection(subjectName + "_interviewQuestions").get() 
                                 for elem in data:
                                                 tempQuestionList.append(elem.to_dict())
-                                questionList = random.sample(tempQuestionList,10)
+                                # questionList = random.sample(tempQuestionList,10)
                                 tempResponse = {
                                                 "responseCode":200,
-                                                "questionsDb": questionList.copy()
+                                                "questionsDb": tempQuestionList.copy()
                                 }
                 except:
                                 tempResponse = {
