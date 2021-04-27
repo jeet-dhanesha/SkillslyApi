@@ -17,7 +17,6 @@ def home():
                 try:
                                 import spacy
                                 from sentifish import Sentiment
-                                from spellchecker import SpellChecker
                                 import random
                                 nlp = spacy.load('en_core_web_sm')
                                 return "Success"
