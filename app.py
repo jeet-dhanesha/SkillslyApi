@@ -9,6 +9,8 @@ import random
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
+nlp = spacy.load('en_core_web_sm')
+
 db = firestore.client()
 
 app = Flask(__name__)
