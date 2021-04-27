@@ -6,7 +6,7 @@ from firebase_admin import credentials, firestore
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 
-nlp = spacy.load('en_core_web_sm')
+
 
 db = firestore.client()
 
@@ -15,14 +15,15 @@ app = Flask(__name__)
 @app.route('/')
 def home():
                 try:
-                    import spacy
-                    from sentifish import Sentiment
-                    from spellchecker import SpellChecker
-                    import random
-                    return "Success"
+                                import spacy
+                                from sentifish import Sentiment
+                                from spellchecker import SpellChecker
+                                import random
+                                nlp = spacy.load('en_core_web_sm')
+                                return "Success"
               
                 except Exception as e:
-                    return e
+                                return e
 
 @app.route('/subjectList')
 def subjectList():
