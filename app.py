@@ -1,10 +1,7 @@
 from flask import Flask, jsonify, render_template
 import firebase_admin
 from firebase_admin import credentials, firestore
-import spacy
-from sentifish import Sentiment
-from spellchecker import SpellChecker
-import random
+
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
