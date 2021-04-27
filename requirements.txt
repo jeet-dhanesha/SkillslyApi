@@ -6,6 +6,6 @@ spacy==3.0.6
 spacy-legacy==3.0.5
 firebase_admin==4.5.0
 spellchecker==0.4
-indexe==0.6.2
+indexer==0.6.2
 ./en_core_web_sm-2.2.5.tar.gz
 gunicorn
