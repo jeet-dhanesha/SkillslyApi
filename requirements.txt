@@ -4,4 +4,5 @@ pyspellchecker==0.6.2
 spacy==3.0.6
 firebase_admin==4.5.0
 spellchecker==0.4
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
 gunicorn
