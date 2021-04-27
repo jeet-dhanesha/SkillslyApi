@@ -23,7 +23,7 @@ def home():
                                 return "Success"
               
                 except Exception as e:
-                                return e
+                                return str(e)
 
 @app.route('/subjectList')
 def subjectList():
