@@ -18,8 +18,7 @@ def home():
                                 import spacy
                                 from sentifish import Sentiment
                                 import random
-                                import en_core_web_sm
-                                nlp = en_core_web_sm.load()
+                                nlp = spacy.load('en_core_web_sm')
                                 return "Success"
               
                 except Exception as e:
