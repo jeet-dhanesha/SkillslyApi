@@ -17,7 +17,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-                return render_template("index.html")
+                try:
+                    import spacy
+                    from sentifish import Sentiment
+                    from spellchecker import SpellChecker
+                    import random
+                    return "Success"
+              
+                except Exception as e:
+                    return e
 
 @app.route('/subjectList')
 def subjectList():
