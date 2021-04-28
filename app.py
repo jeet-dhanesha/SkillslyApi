@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template
 import firebase_admin
 from firebase_admin import credentials, firestore
 
+import random
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
