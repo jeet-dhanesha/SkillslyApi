@@ -115,7 +115,7 @@ def getScore():
                                                 "correctAnswerScore":0,
                                                 "fluencyScore": 0
                                 }
-                return string(e)
+                return str(e)
 
 if __name__ == '__main__': 
                 app.run(debug=True)
