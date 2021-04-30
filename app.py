@@ -108,14 +108,14 @@ def getScore():
                                                 "correctAnswerScore":round(correctAnswerScore*6),
                                                 "fluencyScore": round((count/len(tempX))*2)
                                 }
-                except:
+                except Exception as e:
                                 tempResponse = {
                                                 "responseCode":404,
                                                 "sentimentScore":0,
                                                 "correctAnswerScore":0,
                                                 "fluencyScore": 0
                                 }
-                return jsonify(tempResponse)
+                return string(e)
 
 if __name__ == '__main__': 
                 app.run(debug=True)
