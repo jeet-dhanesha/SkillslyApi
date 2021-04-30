@@ -83,11 +83,16 @@ def interviewQuestions(subjectName):
                                 }
                 return jsonify(tempResponse)
               
-@app.route('/answerScore',methods=['POST'])
-def getScore():
+@app.route('/answerScore/<string:userAnswer>/<string:referenceAnswer>/')
+def getScore(userAnswer,referenceAnswer):
                 try:
-                                data = request.get_json()
-                                return jsonify(data)
+                                tempResponse = {
+                                                "responseCode":200,
+                                                "sentimentScore":0,
+                                                "correctAnswerScore":0,
+                                                "fluencyScore": 0
+                                }
+                                return jsonify(tempResponse)
                                 obj=Sentiment(userAnswer)
                                 sentimentScore = obj.analyze( )
                                 
