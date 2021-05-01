@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+from sentifish import Sentiment
 import firebase_admin
 from firebase_admin import credentials, firestore
 from fuzzywuzzy import fuzz
