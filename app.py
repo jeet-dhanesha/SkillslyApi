@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import firebase_admin
 from firebase_admin import credentials, firestore
 from fuzzywuzzy import fuzz
@@ -94,7 +94,7 @@ def getScore():
                                 #doc2 = nlp(referenceAnswer)
                                 #correctAnswerScore = doc1.similarity(doc2)
 
-                                correctAnswerScore = fuzz.partial_ratio("Catherine M. Gitau","Catherine Gitau")
+                                correctAnswerScore = fuzz.partial_ratio(referenceAnswer,userAnswer)
                                 tempResponse = {
                                                 "responseCode":200,
                                                 "sentimentScore":round(sentimentScore+1)*2,
