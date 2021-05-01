@@ -1,4 +1,4 @@
-sentifish==1.11.4
+sentifish
 Flask==1.1.2
 spacy
 nltk
