@@ -2,8 +2,6 @@ sentifish==1.11.4
 Flask==1.1.2
 pandas
 pyspellchecker
-spacy==3.0.6
-spacy-legacy==3.0.5
 firebase_admin==4.5.0
 spellchecker==0.4
 gunicorn
