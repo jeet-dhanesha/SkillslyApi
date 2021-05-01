@@ -1,5 +1,6 @@
 sentifish==1.11.4
 Flask==1.1.2
+spacy
 pandas
 pyspellchecker
 firebase_admin==4.5.0
