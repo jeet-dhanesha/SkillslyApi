@@ -82,20 +82,20 @@ def interviewQuestions(subjectName):
                                                 "questionsDb": []
                                 }
                 return jsonify(tempResponse)
-              
-@app.route('/answerScore',methods=['POST'])
+
+@app.route('/answerScore')
 def getScore():
                 try:
-                                data = request.get_json()
-                                return jsonify(data)
-        
+                                referenceAnswer = request.args.get("referenceAnswer", default='-1', type=str)
+                                userAnswer = request.args.get("userAnswer", default='-1', type=str)
+          
                                 obj=Sentiment(userAnswer)
-                                sentimentScore = obj.analyze( )
-                                
+                                sentimentScore = obj.analyze()
+                  
                                 doc1 = nlp(userAnswer)
                                 doc2 = nlp(referenceAnswer)
                                 correctAnswerScore = doc1.similarity(doc2)
-
+                      
                                 spell = SpellChecker()
                                 tempX= list(userAnswer)
                                 misspelled = spell.unknown(tempX)
@@ -109,6 +109,7 @@ def getScore():
                                                 "correctAnswerScore":round(correctAnswerScore*6),
                                                 "fluencyScore": round((count/len(tempX))*2)
                                 }
+              
                 except Exception as e:
                                 tempResponse = {
                                                 "responseCode":404,
