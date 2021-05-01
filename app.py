@@ -1,12 +1,8 @@
 from flask import Flask, jsonify, render_template
 import firebase_admin
 from firebase_admin import credentials, firestore
-import spacy
 
 import random
-
-nlp = en_core_web_sm.load()
-
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
@@ -20,6 +16,12 @@ app = Flask(__name__)
 @app.route('/')
 def home():
                 try:
+                                import spacy
+
+
+
+                                nlp = en_core_web_sm.load()
+
                                 return "Success"
               
                 except Exception as e:
