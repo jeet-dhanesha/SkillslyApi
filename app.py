@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, render_template, request
-from sentifish import Sentiment
 import firebase_admin
 from firebase_admin import credentials, firestore
 from fuzzywuzzy import fuzz
@@ -88,8 +87,8 @@ def getScore():
                                 referenceAnswer = request.args.get("referenceAnswer", default='-1', type=str)
                                 userAnswer = request.args.get("userAnswer", default='-1', type=str)
           
-                                obj=Sentiment(userAnswer)
-                                sentimentScore = obj.analyze()
+                                #obj=Sentiment(userAnswer)
+                                #sentimentScore = obj.analyze()
                   
                                 #doc1 = nlp(userAnswer)
                                 #doc2 = nlp(referenceAnswer)
@@ -98,8 +97,8 @@ def getScore():
                                 correctAnswerScore = fuzz.partial_ratio(referenceAnswer,userAnswer)
                                 tempResponse = {
                                                 "responseCode":200,
-                                                "sentimentScore":round(sentimentScore+1)*2,
-                                                "correctAnswerScore":round(correctAnswerScore*6),
+                                                "sentimentScore":0,
+                                                "correctAnswerScore":round(correctAnswerScore*10),
                                                 "fluencyScore": 0
                                 }
                                 return jsonify(tempResponse)
