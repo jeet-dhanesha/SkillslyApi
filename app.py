@@ -1,13 +1,12 @@
 from flask import Flask, jsonify, render_template
 import firebase_admin
 from firebase_admin import credentials, firestore
+from fuzzywuzzy import fuzz
 
 import random
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
-
-
 
 db = firestore.client()
 
@@ -91,16 +90,18 @@ def getScore():
                                 obj=Sentiment(userAnswer)
                                 sentimentScore = obj.analyze()
                   
-                                doc1 = nlp(userAnswer)
-                                doc2 = nlp(referenceAnswer)
-                                correctAnswerScore = doc1.similarity(doc2)
-                      
+                                #doc1 = nlp(userAnswer)
+                                #doc2 = nlp(referenceAnswer)
+                                #correctAnswerScore = doc1.similarity(doc2)
+
+                                correctAnswerScore = fuzz.partial_ratio("Catherine M. Gitau","Catherine Gitau")
                                 tempResponse = {
                                                 "responseCode":200,
-                                                "sentimentScore":round(sentimentScore+1),
+                                                "sentimentScore":round(sentimentScore+1)*2,
                                                 "correctAnswerScore":round(correctAnswerScore*6),
                                                 "fluencyScore": 0
                                 }
+                                return jsonify(tempResponse)
               
                 except Exception as e:
                                 tempResponse = {
@@ -109,7 +110,7 @@ def getScore():
                                                 "correctAnswerScore":0,
                                                 "fluencyScore": 0
                                 }
-                return str(e)
+                                return str(e)
 
 if __name__ == '__main__': 
                 app.run(debug=True)
