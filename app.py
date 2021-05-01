@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template
 import firebase_admin
 from firebase_admin import credentials, firestore
 import spacy
-from sentifish import Sentiment
+
 import random
 
 nlp = en_core_web_sm.load()
@@ -94,18 +94,11 @@ def getScore():
                                 doc2 = nlp(referenceAnswer)
                                 correctAnswerScore = doc1.similarity(doc2)
                       
-                                spell = SpellChecker()
-                                tempX= list(userAnswer)
-                                misspelled = spell.unknown(tempX)
-                                count=0
-                                for word in misspelled:
-                                    count+=1
-                                
                                 tempResponse = {
                                                 "responseCode":200,
                                                 "sentimentScore":round(sentimentScore+1),
                                                 "correctAnswerScore":round(correctAnswerScore*6),
-                                                "fluencyScore": round((count/len(tempX))*2)
+                                                "fluencyScore": 0
                                 }
               
                 except Exception as e:
