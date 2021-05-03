@@ -1,9 +1,12 @@
 from flask import Flask, jsonify, render_template, request
 import firebase_admin
 from firebase_admin import credentials, firestore
-from fuzzywuzzy import fuzz
-
+import spacy
+import en_core_web_sm
+nlp = en_core_web_sm.load()
 import random
+from sentifish import Sentiment
+
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
@@ -15,9 +18,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
                 try:
-                                import spacy
-                                import en_core_web_sm
-                                nlp = en_core_web_sm.load()
+
 
 
                                 return "Success"
@@ -87,19 +88,18 @@ def getScore():
                                 referenceAnswer = request.args.get("referenceAnswer", default='-1', type=str)
                                 userAnswer = request.args.get("userAnswer", default='-1', type=str)
           
-                                #obj=Sentiment(userAnswer)
-                                #sentimentScore = obj.analyze()
+                                obj=Sentiment(userAnswer)
+                                sentimentScore = obj.analyze()
                   
-                                #doc1 = nlp(userAnswer)
-                                #doc2 = nlp(referenceAnswer)
-                                #correctAnswerScore = doc1.similarity(doc2)
+                                doc1 = nlp(userAnswer)
+                                doc2 = nlp(referenceAnswer)
+                                correctAnswerScore = doc1.similarity(doc2)
 
-                                correctAnswerScore = fuzz.partial_ratio(referenceAnswer,userAnswer)
+                                # correctAnswerScore = fuzz.partial_ratio(referenceAnswer,userAnswer)
                                 tempResponse = {
                                                 "responseCode":200,
-                                                "sentimentScore":0,
-                                                "correctAnswerScore":round(correctAnswerScore*10),
-                                                "fluencyScore": 0
+                                                "sentimentScore":round((sentimentScore+1)*2),
+                                                "correctAnswerScore":round(correctAnswerScore*6),
                                 }
                                 return jsonify(tempResponse)
               
