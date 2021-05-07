@@ -91,7 +91,7 @@ def getScore():
                                 tempResponse = {
                                                 "responseCode":200,
                                                 "sentimentScore":0,
-                                                "correctAnswerScore":round(correctAnswerScore*6),
+                                                "correctAnswerScore":round(correctAnswerScore*10),
                                 }
                                 return jsonify(tempResponse)
               
